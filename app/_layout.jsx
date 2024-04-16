@@ -1,6 +1,5 @@
 import React from "react";
-import { Slot, Stack } from "expo-router";
-import { Text } from "react-native";
+import { Stack } from 'expo-router/stack';
 
 const RootLayout = () => {
   return (
