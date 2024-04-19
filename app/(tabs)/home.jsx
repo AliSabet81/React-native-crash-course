@@ -12,11 +12,11 @@ import { images } from "../../constants";
 import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
-import { getAllPost } from "../../lib/appwrite";
+import { getAllPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
 import VideoCard from "../../components/VideoCard";
 const Home = () => {
-  const { data: posts, refetch, isLoading } = useAppwrite(getAllPost);
+  const { data: posts, refetch, isLoading } = useAppwrite(getAllPosts);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
