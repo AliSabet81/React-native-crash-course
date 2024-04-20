@@ -1,5 +1,5 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../components/SearchInput";
 import EmptyState from "../../components/EmptyState";
@@ -10,11 +10,7 @@ import { useLocalSearchParams } from "expo-router";
 
 const Search = () => {
   const { query } = useLocalSearchParams();
-  const {
-    data: posts,
-    refetch,
-    isLoading,
-  } = useAppwrite(() => searchPosts(query));
+  const { data: posts, refetch } = useAppwrite(() => searchPosts(query));
 
   useEffect(() => {
     refetch();
