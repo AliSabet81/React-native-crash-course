@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../components/SearchInput";
 import EmptyState from "../../components/EmptyState";
-import { getUserPosts } from "../../lib/appwrite";
+import { getUserPosts, signOut } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
 import VideoCard from "../../components/VideoCard";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import { icons } from "../../constants";
 import InfoBox from "../../components/InfoBox";
@@ -16,7 +16,12 @@ const Profile = () => {
 
   const { data: posts } = useAppwrite(() => getUserPosts(user.$id));
 
-  const logout = () => {};
+  const logout = async () => {
+    await signOut();
+    setUser(null);
+    setIsLoggedIn(false);
+    router.replace("/sign-in");
+  };
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
@@ -50,13 +55,13 @@ const Profile = () => {
             <View className="mt-5 flex-row">
               <InfoBox
                 title={posts?.length || 0}
-                subtitle='Posts'
+                subtitle="Posts"
                 containerStyles="mr-10"
                 titleStyles="text-xl"
               />
               <InfoBox
-                title='1.2k'
-                subtitle='Followers'
+                title="1.2k"
+                subtitle="Followers"
                 titleStyles="text-xl"
               />
             </View>
