@@ -33,7 +33,7 @@ const TrendingItem = ({ activeItem, item }) => {
   return (
     <Animatable.View
       duration={500}
-      className="mr-5"
+      className="mx-3"
       animation={activeItem === item.$id ? zoomIn : zoomOut}
     >
       {play ? (
